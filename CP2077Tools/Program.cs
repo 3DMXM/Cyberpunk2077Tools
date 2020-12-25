@@ -26,7 +26,10 @@ namespace CP2077Tools
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
             WinFormium.CreateRuntimeBuilder(env =>
             {
                 env.CustomCefSettings(settings =>
@@ -45,7 +48,11 @@ namespace CP2077Tools
 
                 app.UseDataServiceResource("http", "api.app.local");
 
+<<<<<<< HEAD
                 //app.UseDebuggingMode();
+=======
+                app.UseDebuggingMode();
+>>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
 
                 app.UseMainWindow(context => new MainWindow());
 

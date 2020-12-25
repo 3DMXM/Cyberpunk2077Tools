@@ -32,6 +32,7 @@ namespace Cyberpunk2077Tools.Service
         {
             return Text("Hello NanUI!");
         }
+<<<<<<< HEAD
 
         public ResourceResponse closeApp(ResourceRequest request)
         {
@@ -39,6 +40,8 @@ namespace Cyberpunk2077Tools.Service
             System.Environment.Exit(0);   //这是最彻底的退出方式，不管什么线程都被强制退出，把程序结束的很干净，退出时有可能会抛出异常  
             return Json(new { code = "00", msg = "关闭完成" });
         }
+=======
+>>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
         // 选择文件 获取列表
         public ResourceResponse SelectFile(ResourceRequest request)
         {

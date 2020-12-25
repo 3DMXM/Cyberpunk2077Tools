@@ -26,6 +26,7 @@ $(document).ready(function () {
         if (type == "toHide"){
             $(".container").fadeOut();
             $(this).attr('type',"toShow");
+<<<<<<< HEAD
 
             $(".toShow").show();
             $(".toHide").hide();
@@ -35,12 +36,18 @@ $(document).ready(function () {
 
             $(".toHide").show();
             $(".toShow").hide();
+=======
+        }else {
+            $(".container").fadeIn();
+            $(this).attr('type',"toHide");
+>>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
         }
     });
     // 刷新
     $(".refresh").click(function () {
         location.reload();
     });
+<<<<<<< HEAD
     // 关闭
     $(".close").click(function () {
         if (confirm("您确定要关闭吗?如果有在正在解包的文件,将被停止")){
@@ -50,6 +57,9 @@ $(document).ready(function () {
         }
 
     });
+=======
+
+>>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
     // 选择文件
     $(".Select-file").change(function () {
         var file = $(this).prop('files');
@@ -68,6 +78,10 @@ $(document).ready(function () {
                 success:function (red) {
                     // 返回的数据
                     if (red.code == "00"){
+<<<<<<< HEAD
+=======
+                        debugger
+>>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
                         Stoploading();
                         $("#file-path").val(red.filePath[0]);
                         if (i>0){
@@ -98,8 +112,13 @@ $(document).ready(function () {
                 alert("请选择.archive文件");
                 return false;
             }
+<<<<<<< HEAD
             StartLoading() ;    // 显示加载动画
             for (var i = 0; i < fileList.length;i++){
+=======
+            for (var i = 0; i < fileList.length;i++){
+                StartLoading() ;    // 显示加载动画
+>>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
                 var data = new FormData();
                 data.append('file', fileList[i]);
                 var FilePath = "";
@@ -108,12 +127,16 @@ $(document).ready(function () {
                     type: 'POST',
                     data: data,
                     processData : false,
+<<<<<<< HEAD
                     async: false,
+=======
+>>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
                     dataType: "json",
                     success:function (red) {
                         // 返回的数据
                         Stoploading();  // 停止加载动画
                         // $("#file-path").val(red.filePath[0]);
+<<<<<<< HEAD
                         // FilePath = red.filePath[0];
                         // showFileList2(fileList,FilePath);
                         if (i>0){
@@ -121,6 +144,10 @@ $(document).ready(function () {
                         }else {
                             showFileList2(fileList[i],red.filePath[0]);
                         }
+=======
+                        FilePath = red.filePath[0];
+                        showFileList2(fileList,FilePath);
+>>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
                     }
                 });
             }

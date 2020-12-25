@@ -50,6 +50,7 @@
     <ProjectReference Include="..\CP77.CR2W\CP77.CR2W.csproj" />
   </ItemGroup>
 
+<<<<<<< HEAD
   <ItemGroup>
     <None Update="wwwroot\img\welcome.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -59,4 +60,6 @@
     </None>
   </ItemGroup>
 
+=======
+>>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
 </Project>

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
+<<<<<<< HEAD
 using System.Drawing;
+=======
+>>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,6 +39,7 @@ namespace CP2077Tools
             BorderlessWindowProperties.ShadowEffect = ShadowEffect.Shadow;  // 显示光晕
             Title = "赛博朋克2077";
 
+<<<<<<< HEAD
             //DisableSystemMenu = false;
 
             //Mask = "";
@@ -46,6 +50,10 @@ namespace CP2077Tools
             Icon = new System.Drawing.Icon("wwwroot\\img\\2077.ico", 40, 40);
 
             AllowSystemMenu = false;
+=======
+            Icon = new System.Drawing.Icon("wwwroot\\img\\2077.ico", 40, 40);
+
+>>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
 
             //Subtitle = "第一个NanUI应用程序";
             //StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

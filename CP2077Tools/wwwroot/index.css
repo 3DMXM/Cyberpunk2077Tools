@@ -103,17 +103,24 @@ header{
     border-radius: 50%;
     transition: 1.2s;
 }
+<<<<<<< HEAD
 .navSize:hover .avatar{
+=======
+.avatar:hover {
+>>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
     transform: rotate(360deg);
     -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
     -o-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
 }
+<<<<<<< HEAD
 .navSize:hover .header-operat{
     width: 330px;;;
 }
 
+=======
+>>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
 .navRight {
     position: absolute;
     right: 5%;
@@ -371,6 +378,7 @@ header{
       transform: scale(1.0);
       -webkit-transform: scale(1.0);
     }
+<<<<<<< HEAD
 }
 .btn.disable{
     /*color: ;*/
@@ -398,4 +406,6 @@ header{
 }
 .toShow{
     display: none;
+=======
+>>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
 }
