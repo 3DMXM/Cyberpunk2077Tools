@@ -20,13 +20,35 @@ $(document).ready(function () {
             console.log(red);
         })
     });
+    $(".about").click(function () {
+        // //在这里面输入任何合法的js语句
+        layer.open({
+            type: 1 //Page层类型
+            ,area: ['550px', '350px']
+            ,title: '关于'
+            ,shade: 0.6 //遮罩透明度
+            ,maxmin: false //允许全屏最小化
+            ,anim: 1 //0-6的动画形式，-1不开启
+            ,content: '<div style="padding:20px;">'+
+                '<p>作者 By：小莫 (<span class="buy-me-coffee" onclick="buyMeCoffee()">请我喝咖啡</span>)</p>'+
+                '<p>发布地址：<a href="https://mod.3dmgame.com/mod/171654" target="_blank">Mod站</a></p>'+
+                '<p>解包内核：https://github.com/rfuzzo/CP77Tools [By:WolvenKit]</p>'+
+                '<p>工具源码：https://github.com/3DMXM/Cyberpunk2077Tools</p>'+
+                '<p>=========================================</p>'+
+                '<p>感谢WolvenKit的开源项目</p>'+
+                '<p>如果您对2077的Mod感兴趣，可以考虑加入我们：https://bbs.3dmgame.com/thread-5838764-1-1.html</p>'+
+                '<p>使用框架：<a href="https://github.com/NetDimension/NanUI" target="_blank">NanUI</a> | ' +
+                '<a href="https://layer.layui.com/" target="_blank">LayUi.Layer</a> | '+
+                '<a href="https://api.mtyqx.cn/" target="_blank">墨天逸随机图片</a>'+
+                '</p></div>'
+        });
+    });
     // 隐藏
     $(".hide").click(function () {
         var type = $(this).attr('type');
         if (type == "toHide"){
             $(".container").fadeOut();
             $(this).attr('type',"toShow");
-<<<<<<< HEAD
 
             $(".toShow").show();
             $(".toHide").hide();
@@ -36,18 +58,12 @@ $(document).ready(function () {
 
             $(".toHide").show();
             $(".toShow").hide();
-=======
-        }else {
-            $(".container").fadeIn();
-            $(this).attr('type',"toHide");
->>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
         }
     });
     // 刷新
     $(".refresh").click(function () {
         location.reload();
     });
-<<<<<<< HEAD
     // 关闭
     $(".close").click(function () {
         if (confirm("您确定要关闭吗?如果有在正在解包的文件,将被停止")){
@@ -55,11 +71,7 @@ $(document).ready(function () {
                 console.log(red);
             });
         }
-
     });
-=======
-
->>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
     // 选择文件
     $(".Select-file").change(function () {
         var file = $(this).prop('files');
@@ -78,10 +90,6 @@ $(document).ready(function () {
                 success:function (red) {
                     // 返回的数据
                     if (red.code == "00"){
-<<<<<<< HEAD
-=======
-                        debugger
->>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
                         Stoploading();
                         $("#file-path").val(red.filePath[0]);
                         if (i>0){
@@ -95,7 +103,6 @@ $(document).ready(function () {
                 }
             });
         }
-
     })
     // 拖拽区域
     var box = document.getElementById('area');
@@ -112,13 +119,8 @@ $(document).ready(function () {
                 alert("请选择.archive文件");
                 return false;
             }
-<<<<<<< HEAD
             StartLoading() ;    // 显示加载动画
             for (var i = 0; i < fileList.length;i++){
-=======
-            for (var i = 0; i < fileList.length;i++){
-                StartLoading() ;    // 显示加载动画
->>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
                 var data = new FormData();
                 data.append('file', fileList[i]);
                 var FilePath = "";
@@ -127,27 +129,16 @@ $(document).ready(function () {
                     type: 'POST',
                     data: data,
                     processData : false,
-<<<<<<< HEAD
                     async: false,
-=======
->>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
                     dataType: "json",
                     success:function (red) {
                         // 返回的数据
                         Stoploading();  // 停止加载动画
-                        // $("#file-path").val(red.filePath[0]);
-<<<<<<< HEAD
-                        // FilePath = red.filePath[0];
-                        // showFileList2(fileList,FilePath);
                         if (i>0){
                             showFileList2(fileList[i],red.filePath[0],false);
                         }else {
                             showFileList2(fileList[i],red.filePath[0]);
                         }
-=======
-                        FilePath = red.filePath[0];
-                        showFileList2(fileList,FilePath);
->>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
                     }
                 });
             }
@@ -199,6 +190,7 @@ $(document).ready(function () {
             console.log(red);
         });
     });
+    CheckUpdates(); //检测更新
 });
 
 
@@ -335,5 +327,35 @@ function CheckFile() {
             return false;
         }
     }
+    alert("即将开始提取游戏文件,请确保有足够的磁盘空间！");
     return true;
+}
+
+function CheckUpdates() {
+    $.post(api+"/api/CheckUpdates",function (red) {
+        if (red.nowVersion <red.newVersion){
+            if (confirm("检查到新版本,是否进行更新？")){
+                $.get(api+"/api/openDownloadUrl",function (red) {
+                    console.log(red)
+                })
+            }
+        }else {
+            console.log("当前已是最新版本")
+        }
+    })
+}
+function buyMeCoffee() {
+    layer.open({
+        type:1,
+        area:['300px', '400px'],
+        title:'请我喝杯咖啡',
+        resize:false,
+        scrollbar:false,
+        content:'<div class="donate-box"><div class="meta-pay text-center"><strong>这个作者已经懒到不想动了<br/>或许一杯咖啡可以给他点动力</strong></div><div class="qr-pay text-center"><img class="pay-img" id="alipay_qr" src="img/zfb.png"><img class="pay-img d-none" id="wechat_qr" src="img/wx.png"></div><div class="choose-pay text-center mt-2"><input id="alipay" type="radio" name="pay-method" checked><label for="alipay" class="pay-button"><img src="img/alipay.png"></label><input id="wechatpay" type="radio" name="pay-method"><label for="wechatpay" class="pay-button"><img src="img/wechat.png"></label></div></div>'
+    });
+    $('.choose-pay input[type="radio"]').click(function(){
+        var id= $(this).attr('id');
+        if(id=='alipay'){$('.qr-pay #alipay_qr').removeClass('d-none');$('.qr-pay #wechat_qr').addClass('d-none')};
+        if(id=='wechatpay'){$('.qr-pay #alipay_qr').addClass('d-none');$('.qr-pay #wechat_qr').removeClass('d-none')};
+    });
 }

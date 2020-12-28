@@ -16,6 +16,7 @@ using CP77.CR2W.Archive;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Net;
 
 namespace Cyberpunk2077Tools.Service
 {
@@ -27,12 +28,30 @@ namespace Cyberpunk2077Tools.Service
 
         //public Archive ar;
 
-        // api.app.local/api/hi
-        public ResourceResponse Hi(ResourceRequest request)
+        // api.app.local/api/CheckUpdates   检测更新
+        public ResourceResponse CheckUpdates(ResourceRequest request)
         {
-            return Text("Hello NanUI!");
+            double nowVersion = 0.1; //当前文件版本
+
+            string url = "https://mod.3dmgame.com/mod/API/171654";
+
+            WebClient MyWebClient = new WebClient();
+            MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
+            Byte[] pageData = MyWebClient.DownloadData(url); //从指定网站下载数据
+                                                             //string pageHtml = Encoding.Default.GetString(pageData);  //如果获取网站页面采用的是GB2312，则使用这句    
+            string pageHtml = Encoding.UTF8.GetString(pageData); //如果获取网站页面采用的是UTF-8，则使用这句
+            JObject jObject = JObject.Parse(pageHtml);
+            //获取最版本
+            double newVersion = Convert.ToDouble(jObject["mods_version"]);
+
+            return Json(new { nowVersion = nowVersion, newVersion = newVersion});
         }
-<<<<<<< HEAD
+        public ResourceResponse openDownloadUrl(ResourceRequest request)
+        {
+
+            System.Diagnostics.Process.Start("explorer.exe", "https://mod.3dmgame.com/mod/171654");
+            return Text("完成");
+        }
 
         public ResourceResponse closeApp(ResourceRequest request)
         {
@@ -40,8 +59,6 @@ namespace Cyberpunk2077Tools.Service
             System.Environment.Exit(0);   //这是最彻底的退出方式，不管什么线程都被强制退出，把程序结束的很干净，退出时有可能会抛出异常  
             return Json(new { code = "00", msg = "关闭完成" });
         }
-=======
->>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
         // 选择文件 获取列表
         public ResourceResponse SelectFile(ResourceRequest request)
         {
@@ -51,9 +68,9 @@ namespace Cyberpunk2077Tools.Service
             if (file != null)
             {
                 archivePath = file;
-                //var fileList = getGameFileList(file[0]); // 获取 archive文件中的文件列表
+                var fileList = getGameFileList(file[0]); // 获取 archive文件中的文件列表
                 //return Json(new { code = "00", filePath = file, fileList = fileList });
-                return Json(new { code = "00", filePath = file });
+                return Json(new { code = "00", filePath = file ,fileList = fileList });
 
                 //var fileList = new JObject {  };
                 //return Json(new { code = "00", filePath = file, fileList = fileList });
@@ -116,7 +133,7 @@ namespace Cyberpunk2077Tools.Service
                 foreach (var entry in ar.Files)
                 {
                     FileListType FLT = new FileListType();
-                    FLT.FileValue = entry.Value.NameStr;
+                    FLT.FileValue = entry.Value.FileName;
                     FLT.FileHash = entry.Value.NameHash64;
                     FLT.FileType = Logtype.Normal;
                     FileList.Add(FLT);
@@ -164,6 +181,7 @@ namespace Cyberpunk2077Tools.Service
                 ar.ExtractSingle(hash, outDir); // 提取单个文件到指定目录
             }
         }
+
 
     }
 

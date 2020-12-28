@@ -15,10 +15,23 @@
   <ItemGroup>
     <None Remove="CP2077Tool\Resources\archivehashes.csv" />
     <None Remove="wwwroot\img\2077.ico" />
+    <None Remove="wwwroot\img\alipay.png" />
+    <None Remove="wwwroot\img\wechat.png" />
+    <None Remove="wwwroot\img\wx.png" />
+    <None Remove="wwwroot\img\zfb.png" />
     <None Remove="wwwroot\index.css" />
     <None Remove="wwwroot\index.html" />
     <None Remove="wwwroot\index.js" />
     <None Remove="wwwroot\jquery-3.5.1.min.js" />
+    <None Remove="wwwroot\layer.js" />
+    <None Remove="wwwroot\mobile\layer.js" />
+    <None Remove="wwwroot\mobile\need\layer.css" />
+    <None Remove="wwwroot\theme\default\icon-ext.png" />
+    <None Remove="wwwroot\theme\default\icon.png" />
+    <None Remove="wwwroot\theme\default\layer.css" />
+    <None Remove="wwwroot\theme\default\loading-0.gif" />
+    <None Remove="wwwroot\theme\default\loading-1.gif" />
+    <None Remove="wwwroot\theme\default\loading-2.gif" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,10 +44,23 @@
     <EmbeddedResource Include="wwwroot\img\2077.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="wwwroot\img\alipay.png" />
+    <EmbeddedResource Include="wwwroot\img\wechat.png" />
+    <EmbeddedResource Include="wwwroot\img\wx.png" />
+    <EmbeddedResource Include="wwwroot\img\zfb.png" />
     <EmbeddedResource Include="wwwroot\index.css" />
     <EmbeddedResource Include="wwwroot\index.html" />
     <EmbeddedResource Include="wwwroot\index.js" />
     <EmbeddedResource Include="wwwroot\jquery-3.5.1.min.js" />
+    <EmbeddedResource Include="wwwroot\layer.js" />
+    <EmbeddedResource Include="wwwroot\mobile\layer.js" />
+    <EmbeddedResource Include="wwwroot\mobile\need\layer.css" />
+    <EmbeddedResource Include="wwwroot\theme\default\icon-ext.png" />
+    <EmbeddedResource Include="wwwroot\theme\default\icon.png" />
+    <EmbeddedResource Include="wwwroot\theme\default\layer.css" />
+    <EmbeddedResource Include="wwwroot\theme\default\loading-0.gif" />
+    <EmbeddedResource Include="wwwroot\theme\default\loading-1.gif" />
+    <EmbeddedResource Include="wwwroot\theme\default\loading-2.gif" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,8 +76,10 @@
     <ProjectReference Include="..\CP77.CR2W\CP77.CR2W.csproj" />
   </ItemGroup>
 
-<<<<<<< HEAD
   <ItemGroup>
+    <None Update="CP2077Tool\Resources\archivehashes.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="wwwroot\img\welcome.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -59,7 +87,4 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
-=======
->>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
 </Project>

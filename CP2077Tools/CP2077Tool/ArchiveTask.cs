@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
 using CP77.CR2W.Archive;
 using Newtonsoft.Json;
 using WolvenKit.Common.Tools.DDS;
@@ -33,49 +34,59 @@ namespace CP77Tools.Tasks
 
         }
 
-        // path=文件 outpath=导出路径 extract=是否提取 dump=批量提取
-        private static void ArchiveTaskInner(string path, string outpath, bool extract, bool dump, bool list, 
+
+        private static void ArchiveTaskInner(string path, string outpath, bool extract, bool dump, bool list,
             bool uncook, EUncookExtension uext, ulong hash, string pattern, string regex)
         {
-            // 检查文件
             #region checks
 
             if (string.IsNullOrEmpty(path))
             {
-                logger.LogString("请填写输入路径", Logtype.Error);
+                logger.LogString("Please fill in an input path", Logtype.Error);
                 return;
             }
 
             var inputFileInfo = new FileInfo(path);
             var inputDirInfo = new DirectoryInfo(path);
 
+
             if (!inputFileInfo.Exists && !inputDirInfo.Exists)
             {
-                logger.LogString("输入路径不存在", Logtype.Error);
+                logger.LogString("Input path does not exist", Logtype.Error);
                 return;
             }
 
             if (inputFileInfo.Exists && inputFileInfo.Extension != ".archive")
             {
-                logger.LogString("输入文件不是.archive", Logtype.Error);
+                logger.LogString("Input file is not an .archive", Logtype.Error);
                 return;
             }
             else if (inputDirInfo.Exists && inputDirInfo.GetFiles().All(_ => _.Extension != ".archive"))
             {
-                logger.LogString("输入目录中没有要处理的.archive文件", Logtype.Error);
+                logger.LogString("No .archive file to process in the input directory", Logtype.Error);
                 return;
             }
 
+            var isDirectory = !inputFileInfo.Exists;
             var basedir = inputFileInfo.Exists ? new FileInfo(path).Directory : inputDirInfo;
 
             #endregion
 
             if (extract || dump || list || uncook)
             {
-                var tobeprocessedarchives = inputFileInfo.Exists 
-                    ? new List<FileInfo> { inputFileInfo } :
-                    inputDirInfo.GetFiles().Where(_ => _.Extension == ".archive");
-                foreach (var processedarchive in tobeprocessedarchives)
+                var archiveFileInfos = new List<FileInfo>();
+                if (isDirectory)
+                {
+                    //var archiveManager = new ArchiveManager(basedir);
+                    // TODO: use the manager here?
+                }
+                else
+                {
+                    archiveFileInfos = new List<FileInfo> { inputFileInfo };
+                }
+
+
+                foreach (var processedarchive in archiveFileInfos)
                 {
                     // get outdirectory
                     DirectoryInfo outDir;
@@ -154,9 +165,10 @@ namespace CP77Tools.Tasks
                     {
                         foreach (var entry in ar.Files)
                         {
-                            logger.LogString(entry.Value.NameStr, Logtype.Normal);
+                            logger.LogString(entry.Value.FileName, Logtype.Normal);
                         }
                     }
+
 
                 }
             }

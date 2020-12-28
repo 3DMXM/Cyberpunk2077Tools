@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Catel.IoC;
-using CP77.Common.Services;
+using CP77Tools.Common.Services;
 
 namespace CP77.CR2W.Archive
 {
@@ -21,15 +21,16 @@ namespace CP77.CR2W.Archive
         public string bytesAsString => BitConverter.ToString(SHA1Hash);
 
         private string _nameStr;
-        public string NameStr => string.IsNullOrEmpty(_nameStr) ? $"{NameHash64}.bin" : _nameStr;
-        public string Extension => Path.GetExtension(NameStr);
+        public string NameOrHash => string.IsNullOrEmpty(_nameStr) ? $"{NameHash64}" : _nameStr;
+        public string FileName => string.IsNullOrEmpty(_nameStr) ? $"{NameHash64}.bin" : _nameStr;
+        public string Extension => Path.GetExtension(FileName);
 
         private Archive _parentArchive;
 
         public ArchiveItem(BinaryReader br, Archive parent)
         {
             _parentArchive = parent;
-            var mainController = ServiceLocator.Default.ResolveType<IMainController>();
+            var mainController = ServiceLocator.Default.ResolveType<IHashService>();
 
             Read(br, mainController);
         }
@@ -47,7 +48,7 @@ namespace CP77.CR2W.Archive
             SHA1Hash = sha1hash;
         }
 
-        private void Read(BinaryReader br, IMainController mainController)
+        private void Read(BinaryReader br, IHashService mainController)
         {
             NameHash64 = br.ReadUInt64();
 

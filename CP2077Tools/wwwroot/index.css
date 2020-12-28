@@ -103,24 +103,17 @@ header{
     border-radius: 50%;
     transition: 1.2s;
 }
-<<<<<<< HEAD
+
 .navSize:hover .avatar{
-=======
-.avatar:hover {
->>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
     transform: rotate(360deg);
     -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
     -o-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
 }
-<<<<<<< HEAD
 .navSize:hover .header-operat{
-    width: 330px;;;
+    width: 330px;
 }
-
-=======
->>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
 .navRight {
     position: absolute;
     right: 5%;
@@ -378,7 +371,6 @@ header{
       transform: scale(1.0);
       -webkit-transform: scale(1.0);
     }
-<<<<<<< HEAD
 }
 .btn.disable{
     /*color: ;*/
@@ -406,6 +398,37 @@ header{
 }
 .toShow{
     display: none;
-=======
->>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
+}
+.layui-layer-content p{
+    margin-bottom: 5px;
+}
+.layui-layer.layui-layer-page{
+    background-color: rgba(255, 255, 255, 0);
+}
+.layui-layer-title{
+    backdrop-filter:blur(15px);
+    background: rgba(255,255,255,0.7);
+    box-shadow: 0 2px 6px rgba(0,0,0,.05);
+}
+.layui-layer-content{
+    border-radius: 0 0 5px 5px;
+    -webkit-box-shadow: 1px 1px 20px 1px rgba(0,0,0,.05);
+    box-shadow: 1px 1px 20px 1px rgba(0,0,0,.05);
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.buy-me-coffee{
+    cursor: pointer;
+    color: #5352ed;
+}
+.donate-box .meta-pay{margin-top:12px;margin-bottom:12px;color:#333}
+.donate-box .qr-pay img{width:200px;height:200px}
+.donate-box .choose-pay{margin-top:6px}
+.donate-box .choose-pay input{display:none}
+.donate-box .choose-pay input:checked+label{border-color:#0092ee;color:#0092ee}
+.donate-box .pay-button{margin:10px 5px;width:132px;height:45px;border:1px solid #e6e6e6;text-align:center;line-height:38px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 700;}
+.donate-box .pay-button img{height:26px;vertical-align: middle;}
+.text-center{text-align:center}
+.d-none{display:none}
+.layui-layer-content a{
+    color: #ff7f50;
 }

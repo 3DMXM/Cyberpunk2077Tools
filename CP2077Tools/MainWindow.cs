@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
-<<<<<<< HEAD
 using System.Drawing;
-=======
->>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Catel.IoC;
 using CP77.Common.Services;
 using CP77.Common.Tools.FNV1A;
+using CP77Tools;
 using CP77Tools.Common.Services;
 using NetDimension.NanUI;
 using NetDimension.NanUI.HostWindow;
@@ -39,7 +37,6 @@ namespace CP2077Tools
             BorderlessWindowProperties.ShadowEffect = ShadowEffect.Shadow;  // 显示光晕
             Title = "赛博朋克2077";
 
-<<<<<<< HEAD
             //DisableSystemMenu = false;
 
             //Mask = "";
@@ -50,10 +47,6 @@ namespace CP2077Tools
             Icon = new System.Drawing.Icon("wwwroot\\img\\2077.ico", 40, 40);
 
             AllowSystemMenu = false;
-=======
-            Icon = new System.Drawing.Icon("wwwroot\\img\\2077.ico", 40, 40);
-
->>>>>>> 212c22f8632843257f56aeb8d4a3440f3163b6d0
 
             //Subtitle = "第一个NanUI应用程序";
             //StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -73,43 +66,50 @@ namespace CP2077Tools
         // 初始化
         private static async Task Loadhashes()
         {
+            //ServiceLocator.Default.RegisterType<ILoggerService, LoggerService>();
+            //ServiceLocator.Default.RegisterType<IHashService, HashService>();
+            //ServiceLocator.Default.RegisterType<IMainController, MainController>();
+
             ServiceLocator.Default.RegisterType<ILoggerService, LoggerService>();
             ServiceLocator.Default.RegisterType<IHashService, HashService>();
-            ServiceLocator.Default.RegisterType<IMainController, MainController>();
+            ServiceLocator.Default.RegisterType<IAppSettingsService, AppSettingsService>();
 
-            var logger = ServiceLocator.Default.ResolveType<ILoggerService>();
+            var hashService = ServiceLocator.Default.ResolveType<IHashService>();
+            await hashService.ReloadLocally();
 
-            var _maincontroller = ServiceLocator.Default.ResolveType<IMainController>();
             //var logger = ServiceLocator.Default.ResolveType<ILoggerService>();
-            Stopwatch watch = new Stopwatch();
-            watch.Restart();
+            //var _maincontroller = ServiceLocator.Default.ResolveType<IMainController>();
+            ////var logger = ServiceLocator.Default.ResolveType<ILoggerService>();
+            //Stopwatch watch = new Stopwatch();
+            //watch.Restart();
+            //var hashDictionary = new ConcurrentDictionary<ulong, string>();
+            //Parallel.ForEach(File.ReadLines(Constants.ArchiveHashesPath), line =>
+            //{
+            //    // check line
+            //    line = line.Split(',', StringSplitOptions.RemoveEmptyEntries).First();
+            //    if (!string.IsNullOrEmpty(line))
+            //    {
+            //        ulong hash = FNV1A64HashAlgorithm.HashString(line);
+            //        hashDictionary.AddOrUpdate(hash, line, (key, val) => val);
+            //    }
+            //});
 
-            var hashDictionary = new ConcurrentDictionary<ulong, string>();
-
-            Parallel.ForEach(File.ReadLines(Constants.ArchiveHashesPath), line =>
-            {
-                // check line
-                line = line.Split(',', StringSplitOptions.RemoveEmptyEntries).First();
-                if (!string.IsNullOrEmpty(line))
-                {
-                    ulong hash = FNV1A64HashAlgorithm.HashString(line);
-                    hashDictionary.AddOrUpdate(hash, line, (key, val) => val);
-                }
-            });
-
-            _maincontroller.Hashdict = hashDictionary.ToDictionary(
-                entry => entry.Key,
-                entry => entry.Value);
-
-            watch.Stop();
-
+            //_maincontroller.Hashdict = hashDictionary.ToDictionary(
+            //    entry => entry.Key,
+            //    entry => entry.Value);
+            //watch.Stop();
             //logger.LogString($"Loaded {hashDictionary.Count} hashes in {watch.ElapsedMilliseconds}ms.", Logtype.Success);
         }
     }
 
-    public static class Constants
-    {
-        public static string ArchiveHashesPath =>
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CP2077Tool/Resources/archivehashes.csv");
-    }
+    //public static class Constants
+    //{
+    //    public static string ResourcesPath => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CP2077Tool/Resources");
+    //    public static string ArchiveHashesPath =>
+    //        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CP2077Tool/Resources/archivehashes.txt");
+    //    public static string LooseHashesPath =>
+    //        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CP2077Tool/Resources/archivehashes.csv");
+    //    public static string ArchiveHashesZipPath =>
+    //        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CP2077Tool/Resources/archivehashes.zip");
+    //}
 }
