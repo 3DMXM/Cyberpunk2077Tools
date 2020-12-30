@@ -13,6 +13,9 @@
 
  - 支持拖拽导入文件
 
+## 发布地址
+
+[Mod站下载](https://mod.3dmgame.com/mod/171654) | [网盘下载](https://pan.aoe.top/Cyberpunk2077/CP2077Tools/)
 
 
 ## 目前已知问题：
